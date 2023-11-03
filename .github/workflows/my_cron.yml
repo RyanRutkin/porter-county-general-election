@@ -1,0 +1,55 @@
+name: "Cron"
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  python-job:
+    name: "Python job"
+    environment:
+      name: env_for_poc
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Setup python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.10.6'
+#     If you need to install extra packages
+      - name: Install dependencies
+        run: pip install -r job/requirements.txt
+      - name: Run python script
+        run: python job/main.py
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Commit changes
+        run: |
+          git config --global user.email "no-reply@github.com"
+          git config --global user.name "GitHub Actions"
+          git add app/src/data/results.json
+          git commit -m "Update election results"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2  
+        with:
+            # Upload entire repository
+            path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
