@@ -2,7 +2,7 @@
   "name": "porter-county-elections",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ryanrutkin.github.io/porter_county_elections/",
+  "homepage": "https://ryanrutkin.github.io/porter-county-general-election/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
