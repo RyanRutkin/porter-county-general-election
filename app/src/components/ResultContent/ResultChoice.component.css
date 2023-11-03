@@ -1,0 +1,12 @@
+.app-result-choice {
+    display: flex;
+}
+.app-result-choice-title {
+    flex: 1 1 0%;
+}
+.app-result-choice-content {
+    display: flex;
+}
+.app-result-choice-value {
+    padding-right: 0.8rem;
+}
