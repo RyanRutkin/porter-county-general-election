@@ -1,8 +1,10 @@
-import ResultsJson from '../data/results.json';
 import { ElectionResult, ElectionResultChoice, ElectionResultSection } from '../types/ElectionResults.types';
 
-export const parseResults = () => {
-    let content = ResultsJson.content;
+export const parseResults = (resultData: {
+    hash: string;
+    content: string;
+}) => {
+    let content = resultData.content;
     const parsed: ElectionResult = {
         header: '',
         sections: []
