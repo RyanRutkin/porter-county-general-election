@@ -33,8 +33,6 @@ jobs:
         run: pip install -r job/requirements.txt
       - name: Run python script
         run: python job/main.py
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
       - name: Commit changes
         run: |
           git config --global user.email "no-reply@github.com"
@@ -44,12 +42,4 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git push
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2  
-        with:
-            # Upload entire repository
-            path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
