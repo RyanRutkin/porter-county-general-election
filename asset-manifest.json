@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/porter-county-general-election/static/css/main.66b05499.css",
-    "main.js": "/porter-county-general-election/static/js/main.df84bad1.js",
+    "main.css": "/porter-county-general-election/static/css/main.d95032f3.css",
+    "main.js": "/porter-county-general-election/static/js/main.6834ac18.js",
     "static/js/787.fab9c598.chunk.js": "/porter-county-general-election/static/js/787.fab9c598.chunk.js",
     "index.html": "/porter-county-general-election/index.html",
-    "main.66b05499.css.map": "/porter-county-general-election/static/css/main.66b05499.css.map",
-    "main.df84bad1.js.map": "/porter-county-general-election/static/js/main.df84bad1.js.map",
+    "main.d95032f3.css.map": "/porter-county-general-election/static/css/main.d95032f3.css.map",
+    "main.6834ac18.js.map": "/porter-county-general-election/static/js/main.6834ac18.js.map",
     "787.fab9c598.chunk.js.map": "/porter-county-general-election/static/js/787.fab9c598.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.66b05499.css",
-    "static/js/main.df84bad1.js"
+    "static/css/main.d95032f3.css",
+    "static/js/main.6834ac18.js"
   ]
 }
