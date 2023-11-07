@@ -1,4 +1,5 @@
 import './App.css';
+import { DeviceModeContextProvider } from './contexts/DeviceMode.context';
 import { ElectionResultsContextProvider } from './contexts/ElectionResults.context';
 import { SidebarContextProvider } from './contexts/Sidebar.context';
 import { AppDashboard } from './pages/Dashboard/Dashboard.page';
@@ -6,9 +7,11 @@ import { AppDashboard } from './pages/Dashboard/Dashboard.page';
 function App() {
 	return (
 		<ElectionResultsContextProvider>
-			<SidebarContextProvider>
-				<AppDashboard />
-			</SidebarContextProvider>
+			<DeviceModeContextProvider>
+				<SidebarContextProvider>
+					<AppDashboard />
+				</SidebarContextProvider>
+			</DeviceModeContextProvider>
 		</ElectionResultsContextProvider>
 	);
 }

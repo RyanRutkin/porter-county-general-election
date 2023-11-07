@@ -1,6 +1,7 @@
 .app-pie-chart-title {
     font-size: 120%;
     padding: 0.4rem 0.8rem;
+    text-align: center;
 }
 .app-pie-chart-body {
     display: flex;

@@ -3,16 +3,18 @@ import { AppHeader } from "../Header/Header.component";
 import { ElectionResultsContext } from "../../contexts/ElectionResults.context";
 import { AppSidebar } from "../Sidebar/Sidebar.component";
 import './Page.component.css';
+import { SidebarContext } from "../../contexts/Sidebar.context";
 
 export const AppPage: FC<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> & PropsWithChildren> = ({ className, children, ...props }) => {
     const { selectedResults, contentFilter, setContentFilter } = useContext(ElectionResultsContext);
+    const { setShowSidebar } = useContext(SidebarContext);
 
     return (
         <div className="app-page" { ...props } >
             <AppHeader />
             <div className="app-page-body" >
                 <AppSidebar />
-                <div className="app-page-body-main" >
+                <div className="app-page-body-main" onClick={ () => setShowSidebar(false) }>
                     <div className="app-page-inner-header" >
                         <div className='app-page-selected-results' >{ selectedResults }</div>
                         <div className='app-page-filter-container' >

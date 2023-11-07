@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import { ElectionResultSection } from '../../types/ElectionResults.types';
@@ -53,7 +53,7 @@ export const AppPieChart: FC<{section: ElectionResultSection}> = ({section}) => 
         const choiceColor = getColor(choice.choice, idx);
         return {
             ...choice,
-            label: `${ choice.choice } - ${ choice.percent || 0 }%`,
+            label: `${ choice.choice } (${ choice.total?.toLocaleString() }) - ${ choice.percent || 0 }%`,
             color: choiceColor,
             borderColor: getColor(choice.choice, idx, true)
         }
@@ -83,7 +83,7 @@ export const AppPieChart: FC<{section: ElectionResultSection}> = ({section}) => 
             dataset.data.push(choice.total || 0);
             dataset.backgroundColor.push(choice.color);
             dataset.borderColor.push(choice.borderColor);
-            chartData.labels.push(`${ choice.choice } - ${ choice.percent }%`);
+            chartData.labels.push(`${ choice.choice } (${ choice.total }) - ${ choice.percent }%`);
         }
         chartData.datasets.push(dataset);
         return chartData;
@@ -91,7 +91,7 @@ export const AppPieChart: FC<{section: ElectionResultSection}> = ({section}) => 
     const readiedChartData = parseChartData();
     return (
         <div className='app-pie-chart' >
-            <div className='app-pie-chart-title' >{ section.title } - { totalVotes } votes</div>
+            <div className='app-pie-chart-title' >{ section.title } - { totalVotes.toLocaleString() } votes</div>
             <div className='app-pie-chart-body' >
                 <div className='app-pie-chart-legend' >
                     {
