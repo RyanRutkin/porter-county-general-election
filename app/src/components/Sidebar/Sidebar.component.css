@@ -6,6 +6,8 @@
     width: 14rem;
     border-right: 1px solid #cdcdcd;
     height: 100%;
+    position: relative;
+    z-index: 2;
 }
 .app-sidebar-content {
     background-color: #efefef;

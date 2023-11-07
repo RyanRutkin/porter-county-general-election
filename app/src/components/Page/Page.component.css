@@ -18,6 +18,8 @@
 .app-page-body-main {
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 1;
 }
 .app-dashboard-selected-results {
     padding: 0.4rem 0.8rem;
