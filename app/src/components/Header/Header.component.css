@@ -29,3 +29,12 @@
 .app-header-last-update {
     flex: none;
 }
+@media screen and (max-width: 900px) {
+    .app-header-details {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+    .app-header-title {
+        flex: none;
+    }
+}
