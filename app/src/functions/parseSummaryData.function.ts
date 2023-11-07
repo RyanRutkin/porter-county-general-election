@@ -1,6 +1,6 @@
 import { ElectionResult, ElectionResultChoice, ElectionResultSection } from '../types/ElectionResults.types';
 
-export const parseResults = (resultData: {
+export const parseSummaryData = (resultData: {
     hash: string;
     content: string;
 }) => {
@@ -16,6 +16,7 @@ export const parseResults = (resultData: {
         voteForCount: 0
     }
     while(content.length) {
+        // [,\s\d{4}|:\d{2}\sPM|:\d{2}\sAM].+(\d{4})
         const voteForMatch = /(\d+)/.exec(content);
         if (headerSet && voteForMatch?.length) {
             currentSection.voteForCount = parseInt(voteForMatch[0]);

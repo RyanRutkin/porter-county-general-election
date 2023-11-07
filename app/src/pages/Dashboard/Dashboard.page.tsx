@@ -1,26 +1,24 @@
 import { useContext } from 'react';
-import './Dashboard.page.css';
-import { ElectionResultsSummaryContext } from '../../contexts/ElectionResultsSummary.context';
-import { AppResultSection } from '../../components/ResultSection/ResultSection.component';
-import { ElectionResultsPrecinctsContext } from '../../contexts/ElectionResultsPrecincts.context';
+import { ElectionResultsContext } from '../../contexts/ElectionResults.context';
 import { AppPieChart } from '../../components/PieChart/PieChart.component';
+import { AppHeader } from '../../components/Header/Header.component';
 import './Dashboard.page.css';
+import { AppPage } from '../../components/Page/Page.component';
 
 export const AppDashboard = () => {
-    const { results } = useContext(ElectionResultsSummaryContext);
-    const { results: precintResults } = useContext(ElectionResultsPrecinctsContext);
+    const { resultOptions, selectedResults } = useContext(ElectionResultsContext);
 
     return (
-        <div className='app-dashboard' >
+        <AppPage className='app-dashboard' >
             <div className='app-dashboard-chart-section' >
                 {
-                    results?.sections.map((section, idx) => (
-                        <div className='app-dashboard-chart' >
+                    selectedResults && resultOptions[selectedResults]?.result.sections.map((section, idx) => (
+                        <div className='app-dashboard-chart' key={ `app-dashboard-chart_${ idx }` } >
                             <AppPieChart section={ section } />
                         </div>
                     ))
                 }
             </div>
-        </div>
+        </AppPage>
     )
 }

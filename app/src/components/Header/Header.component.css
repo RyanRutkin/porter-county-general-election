@@ -1,0 +1,31 @@
+.app-header {
+    display: flex;
+    padding: 0.4rem 0.8rem;
+    border-bottom: 1px solid #cdcdcd;
+    background-color: #efefef;
+    align-items: center;
+    flex: none;
+}
+.app-header-sidebar-area {
+    flex: none;
+    padding: 0;
+    cursor: pointer;
+}
+.app-header-sidebar-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+.app-header-details {
+    padding-left: 0.8rem;
+    flex: 1 1 0%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.app-header-title {
+    font-size: 140%;
+    flex: 1 1 0%;
+    text-align: center;
+}
+.app-header-last-update {
+    flex: none;
+}

@@ -1,3 +1,7 @@
+export type ElectionPrecinct = {
+    title: string;
+    result: ElectionResult;
+}
 export type ElectionResult = {
     header: string;
     sections: ElectionResultSection[];

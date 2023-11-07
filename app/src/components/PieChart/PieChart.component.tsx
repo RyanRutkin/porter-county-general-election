@@ -96,7 +96,7 @@ export const AppPieChart: FC<{section: ElectionResultSection}> = ({section}) => 
                 <div className='app-pie-chart-legend' >
                     {
                         choices.map(choice => (
-                            <div className='app-pie-chart-legend-entry' >
+                            <div className='app-pie-chart-legend-entry' key={ `app-pie-chart-legend_${ choice.label }` } >
                                 <div className='app-pie-chart-label' >{ choice.label }</div>
                                 <div className='app-pie-chart-label-color' style={{ 
                                     backgroundColor: choice.color, 

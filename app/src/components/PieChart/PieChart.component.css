@@ -21,6 +21,7 @@
 .app-pie-chart-label {
     padding-right: 0.4rem;
     flex: 1 1 0%;
+    text-align: right;
 }
 .app-pie-chart-label-color {
     height: 1rem;

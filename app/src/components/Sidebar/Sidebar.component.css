@@ -1,0 +1,36 @@
+.app-sidebar {
+    flex: none;
+    overflow: hidden;
+    transition: width 0.8s ease;
+    max-width: 100%;
+    width: 14rem;
+    border-right: 1px solid #cdcdcd;
+    height: 100%;
+}
+.app-sidebar-content {
+    background-color: #efefef;
+    width: 14rem;
+    height: 100%;
+    overflow: auto;
+}
+.app-sidebar-option {
+    cursor: pointer;
+    border-bottom: 1px solid #cdcdcd;
+    padding: 0.4rem 0.8rem;
+}
+.app-sidebar-option-selected {
+    background-color: #dedede;
+}
+/* Invert show functionality on desktop */
+.app-sidebar-show {
+    width: 0;
+}
+@media screen and (max-width: 900px) {
+    .app-sidebar {
+        position: absolute;
+        width: 0;
+    }
+    .app-sidebar-show {
+        width: 14rem;
+    }
+}
