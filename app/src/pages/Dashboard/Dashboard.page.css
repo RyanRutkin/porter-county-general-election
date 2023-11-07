@@ -1,0 +1,13 @@
+.app-dashboard-chart-section {
+    display: flex;
+    flex-wrap: wrap;
+}
+.app-dashboard-chart {
+    width: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+    .app-dashboard-chart {
+        width: 50%;
+    }
+}

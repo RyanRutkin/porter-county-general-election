@@ -4,7 +4,7 @@ import { parseResults } from '../functions/parseResults.function';
 import { ElectionResult } from '../types/ElectionResults.types';
 import ResultsJson from '../data/results.json';
 
-export const ElectionResultsContext = createContext<{
+export const ElectionResultsSummaryContext = createContext<{
     results: ElectionResult | null;
     lastUpdateTimestamp: string;
 }>({
@@ -12,28 +12,28 @@ export const ElectionResultsContext = createContext<{
     lastUpdateTimestamp: ''
 });
 
-export const ElectionResultsContextProvider: FC<PropsWithChildren> = ({ children }) => {
+export const ElectionResultsSummaryContextProvider: FC<PropsWithChildren> = ({ children }) => {
     const [ results, setResults ] = useState<ElectionResult | null>(null);
     const [ lastHash, setLastHash ] = useState<string>('');
     const [ lastUpdateTimestamp, setLastUpdateTimestamp ] = useState<string>('');
     const [ flipper, setFlipper ] = useState<number>(0);
 
     useEffect(() => {
-        if (ResultsJson.hash === lastHash) {
+        if (ResultsJson.summary?.hash === lastHash) {
             console.log('Skipping');
             return;
         }
-        console.log(`Parsing content: ${ flipper }; New hash: ${ ResultsJson.hash }; Last hash: ${ lastHash }`);
-        setLastHash(ResultsJson.hash);
+        console.log(`Parsing content: ${ flipper }; New hash: ${ ResultsJson.summary?.hash }; Last hash: ${ lastHash }`);
+        setLastHash(ResultsJson.summary?.hash || '');
         setLastUpdateTimestamp(new Date().toLocaleTimeString("en-US"));
-        setResults(parseResults(ResultsJson));
+        setResults(parseResults(ResultsJson.summary || {}));
     }, [flipper, lastHash]);
 
     useInterval(() => {
         setFlipper(flip => flip ? 0 : 1);
     }, 300000);
 
-    return <ElectionResultsContext.Provider value={{ results, lastUpdateTimestamp }} >
+    return <ElectionResultsSummaryContext.Provider value={{ results, lastUpdateTimestamp }} >
         { children }
-    </ElectionResultsContext.Provider>
+    </ElectionResultsSummaryContext.Provider>
 }

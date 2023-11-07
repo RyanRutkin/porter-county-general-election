@@ -1,12 +1,15 @@
 import './App.css';
-import { ElectionResultsContextProvider } from './contexts/ElectionResults.context';
+import { ElectionResultsPrecinctsContextProvider } from './contexts/ElectionResultsPrecincts.context';
+import { ElectionResultsSummaryContextProvider } from './contexts/ElectionResultsSummary.context';
 import { AppDashboard } from './pages/Dashboard/Dashboard.page';
 
 function App() {
 	return (
-		<ElectionResultsContextProvider>
+		<ElectionResultsSummaryContextProvider>
+		<ElectionResultsPrecinctsContextProvider>
 			<AppDashboard />
-		</ElectionResultsContextProvider>
+		</ElectionResultsPrecinctsContextProvider>
+		</ElectionResultsSummaryContextProvider>
 	);
 }
 

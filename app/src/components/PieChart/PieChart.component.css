@@ -1,0 +1,32 @@
+.app-pie-chart-title {
+    font-size: 120%;
+    padding: 0.4rem 0.8rem;
+}
+.app-pie-chart-body {
+    display: flex;
+}
+.app-pie-chart-legend {
+    width: 50%;
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+.app-pie-chart-legend-entry {
+    display: flex;
+    padding: 0.2rem 0.8rem;
+    align-items: center;
+}
+.app-pie-chart-label {
+    padding-right: 0.4rem;
+    flex: 1 1 0%;
+}
+.app-pie-chart-label-color {
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    border-width: 1px;
+    border-style: solid;
+    flex: none;
+}
