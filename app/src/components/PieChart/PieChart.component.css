@@ -30,3 +30,7 @@
     border-style: solid;
     flex: none;
 }
+.app-pie-chart-container {
+    width: 50%;
+    flex: none;
+}

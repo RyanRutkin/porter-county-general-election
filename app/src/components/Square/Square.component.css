@@ -1,0 +1,9 @@
+.app-square {
+    display: flex;
+    align-items: center;
+}
+
+.app-square-contents {
+    position: relative;
+    overflow: hidden;
+}

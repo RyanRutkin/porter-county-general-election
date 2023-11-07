@@ -3,6 +3,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import { ElectionResultSection } from '../../types/ElectionResults.types';
 import './PieChart.component.css';
+import { AppSquare } from '../Square/Square.component';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.overrides['pie'].plugins.legend.display = false;
@@ -106,7 +107,9 @@ export const AppPieChart: FC<{section: ElectionResultSection}> = ({section}) => 
                     }
                 </div>
                 <div className='app-pie-chart-container' >
-                    <Pie data={readiedChartData} />
+                    <AppSquare>
+                        <Pie data={readiedChartData} />
+                    </AppSquare>
                 </div>
             </div>
         </div>
