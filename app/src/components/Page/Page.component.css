@@ -20,15 +20,59 @@
     flex-direction: column;
     position: relative;
     z-index: 1;
+    flex: 1 1 0%;
 }
-.app-dashboard-selected-results {
-    padding: 0.4rem 0.8rem;
+.app-page-inner-header {
     border-bottom: 1px solid #cdcdcd;
     background-color: #efefef;
-    text-align: center;
     flex: none;
+    padding: 0.4rem 0.8rem;
+    align-items: center;
+    display: flex;
+}
+.app-page-selected-results {
+    flex: 1 1 0%;
+    text-align: center;
+}
+.app-page-filter-container {
+    flex: none;
+    width: 14rem;
+    display: flex;
+    align-items: center;
+}
+.app-page-filter-label {
+    padding-right: 0.4rem;
+    flex: none;
+}
+.app-page-filter-input-wrapper {
+    flex: 1 1 0%;
+}
+.app-page-filter-input {
+    width: 100%;
 }
 .app-page-content {
     flex: 1 1 0%;
     overflow: auto;
+}
+@media screen and (max-width: 900px) {
+    .app-page-inner-header {
+        flex-direction: column;
+        padding: 0;
+    }
+    .app-page-selected-results {
+        flex: none;
+        padding: 0.4rem 0;
+        border-bottom: 1px solid #cdcdcd;
+        width: 100%;
+    }
+    .app-page-filter-container {
+        width: 100%;
+        padding: 0.4rem 0;
+    }
+    .app-page-filter-label {
+        padding-left: 0.8rem;
+    }
+    .app-page-filter-input-wrapper {
+        padding-right: 0.8rem;
+    }
 }

@@ -11,11 +11,15 @@ export const ElectionResultsContext = createContext<{
     setSelectedResults: (selection: string) => void;
     resultOptions: Record<string, ElectionPrecinct>;
     lastUpdateTimestamp: string;
+    contentFilter: string;
+    setContentFilter: (filter: string) => void;
 }>({
     selectedResults: null,
     setSelectedResults: (selection: string) => { throw new Error('ElectionResultsContext is not within scope.') },
     resultOptions: {},
-    lastUpdateTimestamp: ''
+    lastUpdateTimestamp: '',
+    contentFilter: '',
+    setContentFilter: (filter: string) => { throw new Error('ElectionResultsContext is not within scope.') }
 });
 
 export const ElectionResultsContextProvider: FC<PropsWithChildren> = ({ children }) => {
@@ -25,6 +29,7 @@ export const ElectionResultsContextProvider: FC<PropsWithChildren> = ({ children
     const [ lastPrecinctHash, setLastPrecinctHash ] = useState<string>('');
     const [ lastUpdateTimestamp, setLastUpdateTimestamp ] = useState<string>('');
     const [ flipper, setFlipper ] = useState<number>(0);
+    const [ contentFilter, setContentFilter ] = useState<string>('');
 
     const setSelectedResults = useCallback((selection: string) => {
         if (!resultOptions[selection]) {
@@ -53,7 +58,7 @@ export const ElectionResultsContextProvider: FC<PropsWithChildren> = ({ children
                 result: summaryResults
             }
         }));
-    }, [flipper, ResultsJson, lastSummaryHash]);
+    }, [flipper, lastSummaryHash]);
 
     const parsePrecincts = useCallback(() => {
         if (ResultsJson.precinct?.hash === lastPrecinctHash) {
@@ -72,12 +77,12 @@ export const ElectionResultsContextProvider: FC<PropsWithChildren> = ({ children
             ...options,
             ...precinctResults,
         }));
-    }, [flipper, ResultsJson, lastPrecinctHash]);
+    }, [flipper, lastPrecinctHash]);
 
     useEffect(() => {
         parseSummary();
         parsePrecincts();
-    }, [flipper]);
+    }, [flipper, parsePrecincts, parseSummary]);
 
     useInterval(() => {
         setFlipper(flip => flip ? 0 : 1);
@@ -86,7 +91,8 @@ export const ElectionResultsContextProvider: FC<PropsWithChildren> = ({ children
     return <ElectionResultsContext.Provider value={{ 
         selectedResults, setSelectedResults,
         resultOptions: resultOptions, 
-        lastUpdateTimestamp
+        lastUpdateTimestamp,
+        contentFilter, setContentFilter
     }} >
         { children }
     </ElectionResultsContext.Provider>

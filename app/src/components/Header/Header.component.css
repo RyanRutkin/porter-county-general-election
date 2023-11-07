@@ -28,6 +28,7 @@
 }
 .app-header-last-update {
     flex: none;
+    text-align: center;
 }
 @media screen and (max-width: 900px) {
     .app-header-details {
