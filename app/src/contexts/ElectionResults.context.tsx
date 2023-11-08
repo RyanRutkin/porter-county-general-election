@@ -108,7 +108,7 @@ export const ElectionResultsContextProvider: FC<PropsWithChildren> = ({ children
 
     useInterval(() => {
         setFlipper(flip => flip ? 0 : 1);
-    }, 300000);
+    }, 60000);
 
     return <ElectionResultsContext.Provider value={{ 
         selectedResults, setSelectedResults,
