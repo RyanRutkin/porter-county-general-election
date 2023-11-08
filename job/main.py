@@ -102,11 +102,11 @@ class DownloadGeneralElectionResults():
         }
 
         response = requests.get('https://www2.porterco.org/election-results.html', params=params, cookies=cookies, headers=headers)
-        # sha1hash = hashlib.sha1(response.text).hexdigest()
         self.results['summary'] = {
             'hash': '',
             'content': response.text
         }
+        self.results['summary']['hash'] = hashlib.sha1(response.text.encode('utf-8')).hexdigest()
         self.checkCompletion()
 
     def downloadPrecinctResults(self):
