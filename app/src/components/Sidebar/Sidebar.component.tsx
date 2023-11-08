@@ -5,7 +5,7 @@ import './Sidebar.component.css';
 import { DeviceModeContext } from "../../contexts/DeviceMode.context";
 
 export const AppSidebar = () => {
-    const { selectedResults, setSelectedResults, resultOptions } = useContext(ElectionResultsContext);
+    const { selectedResults, setSelectedResults, resultOptions, sound, toggleSound } = useContext(ElectionResultsContext);
     const { showSidebar, setShowSidebar } = useContext(SidebarContext);
     const { mode } = useContext(DeviceModeContext);
     const options = Object.keys(resultOptions);
@@ -13,6 +13,9 @@ export const AppSidebar = () => {
     return (
         <div className={ `app-sidebar ${ showSidebar ? 'app-sidebar-show' : '' }` } >
             <div className="app-sidebar-content" >
+                <div className="app-sidebar-option app-sidebar-sound-toggle" onClick={ () => toggleSound(!sound) } >
+                    <button className="app-sidebar-toggle-sound-btn" onClick={ () => toggleSound(!sound) } >{ sound ? 'Disable sound' : 'Enable sound' }</button>
+                </div>
                 {
                     options.map((option, idx) => (
                         <div 

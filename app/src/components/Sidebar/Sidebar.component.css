@@ -23,6 +23,11 @@
 .app-sidebar-option-selected {
     background-color: #dedede;
 }
+.app-sidebar-sound-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 /* Invert show functionality on desktop */
 .app-sidebar-show {
     width: 0;
