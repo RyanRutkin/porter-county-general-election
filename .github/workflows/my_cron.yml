@@ -46,4 +46,4 @@ jobs:
       - name: Enter app
         run: cd app
       - name: Deploy app
-        run: npm run deploy
+        run: gh-pages -d build
