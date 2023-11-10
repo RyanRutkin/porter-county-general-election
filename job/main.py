@@ -26,7 +26,7 @@ class DownloadGeneralElectionResults():
 
     def downloadSummaryResults(self):
         print('Downloading summary results')
-        output, sha1hash = self.downloadFileContents('https://www.porterco.org/DocumentCenter/View/15171/3-2022-General-Election-OFFICIAL-Summary')
+        output, sha1hash = self.downloadFileContents('https://www.porterco.org/DocumentCenter/View/16290/2023MunicipalSummaryUnofficial')
         self.results['summary'] = {
             'hash': sha1hash,
             'content': output
@@ -35,7 +35,7 @@ class DownloadGeneralElectionResults():
 
     def downloadPrecinctResults(self):
         print('Downloading precinct results')
-        output, sha1hash = self.downloadFileContents('https://www.porterco.org/DocumentCenter/View/15170/4-2022-General-Election-OFFICIAL-Precinct-Results')
+        output, sha1hash = self.downloadFileContents('https://www.porterco.org/DocumentCenter/View/16289/2023MunicipalPrecinctUnofficial')
         self.results['precinct'] = {
             'hash': sha1hash,
             'content': output
