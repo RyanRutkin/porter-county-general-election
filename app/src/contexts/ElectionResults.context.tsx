@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren, createContext, useCallback, useEffect, useState } from 'react';
 import { useInterval } from '../hooks/useInterval.hook';
 import { parseSummaryData } from '../functions/parseSummaryData.function';
-import { ElectionPrecinct, RawElectionResults } from '../types/ElectionResults.types';
+import { ElectionPrecinct } from '../types/ElectionResults.types';
 import ResultsJson from '../data/results.json';
 import { parsePrecinctData } from '../functions/parsePrecinctData.function';
 import { prunePageDates } from '../functions/prunePageDates.function';
@@ -30,8 +30,8 @@ export const ElectionResultsContext = createContext<{
 export const ElectionResultsContextProvider: FC<PropsWithChildren> = ({ children }) => {
     const [ selectedResults, _setSelectedResults ] = useState<string>('Summary');
     const [ resultOptions, setResultOptions ] = useState<Record<string, ElectionPrecinct>>({});
-    const [ lastSummaryHash, setLastSummaryHash ] = useState<string>('nope');
-    const [ lastPrecinctHash, setLastPrecinctHash ] = useState<string>('nope');
+    const [ lastSummaryHash, setLastSummaryHash ] = useState<string>('');
+    const [ lastPrecinctHash, setLastPrecinctHash ] = useState<string>('');
     const [ lastUpdateTimestamp, setLastUpdateTimestamp ] = useState<string>('');
     const [ flipper, setFlipper ] = useState<number>(0);
     const [ contentFilter, setContentFilter ] = useState<string>('');
@@ -52,16 +52,16 @@ export const ElectionResultsContextProvider: FC<PropsWithChildren> = ({ children
     }, [resultOptions]);
 
     const parseSummary = useCallback(() => {
-        if (!ResultsJson.summary || (ResultsJson.summary as RawElectionResults).hash === lastSummaryHash) {
+        if (ResultsJson.summary?.hash === lastSummaryHash) {
             console.log('Skipping summary');
             return false;
         }
-        console.log(`Parsing summary content: ${ flipper }; New hash: ${ (ResultsJson.summary as RawElectionResults).hash }; Last hash: ${ lastSummaryHash }`);
-        setLastSummaryHash((ResultsJson.summary as RawElectionResults).hash || '');
+        console.log(`Parsing summary content: ${ flipper }; New hash: ${ ResultsJson.summary?.hash }; Last hash: ${ lastSummaryHash }`);
+        setLastSummaryHash(ResultsJson.summary?.hash || '');
         setLastUpdateTimestamp(new Date().toLocaleTimeString("en-US"));
-        const summaryContent = prunePageDates((ResultsJson.summary as RawElectionResults).content || '');
+        const summaryContent = prunePageDates(ResultsJson.summary?.content || '');
         const summaryResults = parseSummaryData({
-            hash: (ResultsJson.summary as RawElectionResults).hash || '',
+            hash: ResultsJson.summary?.hash || '',
             content: summaryContent
         });
         setResultOptions(options => ({
@@ -75,16 +75,16 @@ export const ElectionResultsContextProvider: FC<PropsWithChildren> = ({ children
     }, [flipper, lastSummaryHash]);
 
     const parsePrecincts = useCallback(() => {
-        if (!ResultsJson.precinct || (ResultsJson.precinct as RawElectionResults).hash === lastPrecinctHash) {
-            console.log('Skipping summary');
+        if (ResultsJson.precinct?.hash === lastPrecinctHash) {
+            console.log('Skipping precincts');
             return false;
         }
-        console.log(`Parsing precinct content: ${ flipper }; New hash: ${ (ResultsJson.precinct as RawElectionResults).hash }; Last hash: ${ lastPrecinctHash }`);
-        setLastPrecinctHash((ResultsJson.precinct as RawElectionResults).hash || '');
+        console.log(`Parsing precinct content: ${ flipper }; New hash: ${ ResultsJson.precinct?.hash }; Last hash: ${ lastPrecinctHash }`);
+        setLastPrecinctHash(ResultsJson.precinct?.hash || '');
         setLastUpdateTimestamp(new Date().toLocaleTimeString("en-US"));
-        const precinctsContent = prunePageDates((ResultsJson.precinct as RawElectionResults).content || '');
+        const precinctsContent = prunePageDates(ResultsJson.precinct?.content || '');
         const precinctResults = parsePrecinctData({
-            hash: (ResultsJson.precinct as RawElectionResults).hash || '',
+            hash: ResultsJson.precinct?.hash || '',
             content: precinctsContent
         });
         setResultOptions(options => ({
@@ -108,7 +108,7 @@ export const ElectionResultsContextProvider: FC<PropsWithChildren> = ({ children
 
     useInterval(() => {
         setFlipper(flip => flip ? 0 : 1);
-    }, 60000);
+    }, 300000);
 
     return <ElectionResultsContext.Provider value={{ 
         selectedResults, setSelectedResults,

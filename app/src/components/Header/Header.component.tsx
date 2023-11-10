@@ -14,7 +14,7 @@ export const AppHeader = () => {
                 <img className="app-header-sidebar-icon" src={ HamburgerIcon } alt="Toggle Sidebar" />
             </div>
             <div className="app-header-details" >
-                <div className="app-header-title" >Porter County General Election 2023</div>
+                <div className="app-header-title" >Porter County General Election 2022</div>
                 <div className="app-header-last-update" >Last Updated: { lastUpdateTimestamp }</div>
             </div>
         </div>

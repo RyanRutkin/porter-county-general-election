@@ -62,24 +62,24 @@ function parseSectionContent(content: string) {
     while(lines.length && !/\w/.exec(lines[lines.length - 1])) {
         lines = lines.slice(0, lines.length - 1);
     }
-    // const trimmedContent = lines.join('');
-    // const matches = trimmedContent.match(/[\s]{2}([a-zA-Z\.\-\,]+(\s{0,1}[a-zA-Z\.\-\,]+)+(\s{0,1}\({0,1}[a-zA-Z]+\){0,1}){0,1})/gm);
-    // if (!matches?.length) {
-    //     return [];
-    // }
-    const entries: any[] = lines;
-    // for (let i = 0; i < matches.length; i++) {
-    //     const matchIdx = trimmedContent.indexOf(matches[i]);
-    //     if (matchIdx === -1) {
-    //         continue;
-    //     }
-    //     const nextMatchIdx = i < matches.length - 1 ? trimmedContent.indexOf(matches[i+1]) : null;
-    //     if (nextMatchIdx !== null && nextMatchIdx > -1) {
-    //         entries.push(trimmedContent.substring(matchIdx, nextMatchIdx));
-    //     } else {
-    //         entries.push(trimmedContent.substring(matchIdx));
-    //     }
-    // }
+    const trimmedContent = lines.join('');
+    const matches = trimmedContent.match(/[\s]{2}([a-zA-Z\.\-\,]+(\s{0,1}[a-zA-Z\.\-\,]+)+(\s{0,1}\({0,1}[a-zA-Z]+\){0,1}){0,1})/gm);
+    if (!matches?.length) {
+        return [];
+    }
+    const entries: any[] = [];
+    for (let i = 0; i < matches.length; i++) {
+        const matchIdx = trimmedContent.indexOf(matches[i]);
+        if (matchIdx === -1) {
+            continue;
+        }
+        const nextMatchIdx = i < matches.length - 1 ? trimmedContent.indexOf(matches[i+1]) : null;
+        if (nextMatchIdx !== null && nextMatchIdx > -1) {
+            entries.push(trimmedContent.substring(matchIdx, nextMatchIdx));
+        } else {
+            entries.push(trimmedContent.substring(matchIdx));
+        }
+    }
     const options: ElectionResultChoice[] = [];
     entries.forEach(entry => {
         const choiceEndMatch = /[a-zA-Z\-\(\)]/.exec(entry.split('').reverse().join(''));

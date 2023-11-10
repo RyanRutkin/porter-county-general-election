@@ -25,15 +25,15 @@ const COLORS = [
 
 function getColor(label: string, index: number, isBorder?: boolean) {
     let choiceColor = COLORS[index%COLORS.length];
-    // if (label.indexOf('(REP)') > -1) {
-    //     choiceColor = COLOR_REP;
-    // }
-    // if (label.indexOf('(DEM)') > -1) {
-    //     choiceColor = COLOR_DEM;
-    // }
-    // if (label.indexOf('(LIB)') > -1) {
-    //     choiceColor = COLOR_LIB;
-    // }
+    if (label.indexOf('(REP)') > -1) {
+        choiceColor = COLOR_REP;
+    }
+    if (label.indexOf('(DEM)') > -1) {
+        choiceColor = COLOR_DEM;
+    }
+    if (label.indexOf('(LIB)') > -1) {
+        choiceColor = COLOR_LIB;
+    }
     if (isBorder) {
         return `${choiceColor}8)`;
     }
