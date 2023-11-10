@@ -16,7 +16,3 @@ export type ElectionResultChoice = {
     total: number | null;
     percent: number | null;
 }
-export type RawElectionResults = {
-    hash: string;
-    content: string;
-}
